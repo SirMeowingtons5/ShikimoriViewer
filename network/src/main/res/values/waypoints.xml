@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="oauth_token">https://shikimori.org/oauth/token</string>
+    <string name="api">https://shikimori.org/api</string>
+    <string name="oauth_redirect_uri">app://com.meowingtons.shikimoriviewer/oauth</string>
+</resources>
