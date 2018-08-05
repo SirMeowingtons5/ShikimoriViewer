@@ -2,8 +2,6 @@ package com.meowingtons.network
 
 import android.content.res.Resources
 import com.meowingtons.network.api.AuthApi
-import com.meowingtons.network.di.component.DaggerAuthComponent
-import com.meowingtons.network.di.scope.AuthenticatorScope
 import com.meowingtons.network.model.AccessToken
 
 

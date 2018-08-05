@@ -13,8 +13,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 (includes = [OkHttpClientModule::class])
-class AuthModule {
+class AuthenticatorModule {
 
+    @AuthenticatorScope
     @Provides
     fun authenticator(authApi: AuthApi): Authenticator{
         return Authenticator(authApi)
