@@ -1,4 +1,4 @@
-package com.meowingtons.network
+package com.meowingtons.network.api
 
 import com.meowingtons.network.model.AccessToken
 import retrofit2.Call

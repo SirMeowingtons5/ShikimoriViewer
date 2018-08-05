@@ -2,7 +2,9 @@ package com.meowingtons.network.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.meowingtons.network.AuthApi
+import com.meowingtons.network.Authenticator
+import com.meowingtons.network.api.AuthApi
+import com.meowingtons.network.di.scope.AuthenticatorScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -14,13 +16,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 class AuthModule {
 
     @Provides
-    fun authApi(retrofit: Retrofit) : AuthApi{
+    fun authenticator(authApi: AuthApi): Authenticator{
+        return Authenticator(authApi)
+    }
+
+    @AuthenticatorScope
+    @Provides
+    fun authApi(retrofit: Retrofit) : AuthApi {
         return retrofit.create(AuthApi::class.java)
     }
 
+    @AuthenticatorScope
     @Provides
-    fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory,
-                 gson: Gson): Retrofit{
+    fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
         return Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl("https://shikimori.org/oauth")

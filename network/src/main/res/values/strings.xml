@@ -3,4 +3,5 @@
     <string name="type_auth_code">authorization_code</string>
     <string name="type_refresh_token">refresh_token</string>
     <string name="header_user_agent">User-Agent: ShikimoriViewer</string>
+    <string name="redirect_uri">app://com.meowingtons.shikimoriviewer/oauth</string>
 </resources>
