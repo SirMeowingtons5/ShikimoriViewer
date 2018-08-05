@@ -6,11 +6,13 @@ import retrofit2.http.*
 
 
 interface AuthApi {
-    @POST("/token")
+    @FormUrlEncoded
+    @POST("/oauth/token")
     @Headers("User-Agent: ShikimoriViewer")
     fun getAccessToken(@FieldMap params : Map<String, String>) : Call<AccessToken>
 
-    @POST ("/token")
+    @FormUrlEncoded
+    @POST ("/oauth/token")
     @Headers("User-Agent: ShikimoriViewer")
     fun refreshAccessToken(@FieldMap params : Map<String, String>) : Call<AccessToken>
 }

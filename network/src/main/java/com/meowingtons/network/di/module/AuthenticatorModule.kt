@@ -32,7 +32,7 @@ class AuthenticatorModule {
     fun retrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit{
         return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("https://shikimori.org/oauth")
+                .baseUrl("https://shikimori.org/")
                 .addConverterFactory(gsonConverterFactory)
                 .build()
     }

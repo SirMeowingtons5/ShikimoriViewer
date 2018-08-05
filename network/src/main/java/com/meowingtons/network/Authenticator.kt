@@ -1,27 +1,31 @@
 package com.meowingtons.network
 
 import android.content.res.Resources
+import android.util.Log
 import com.meowingtons.network.api.AuthApi
 import com.meowingtons.network.model.AccessToken
+import com.meowingtons.network.constants.*
 
 
-class Authenticator(val authApi: AuthApi){
+class Authenticator(private val authApi: AuthApi){
     init {
     }
-    fun getAccessToken(authorizationCode: String): AccessToken?{
+    suspend fun getAccessToken(authorizationCode: String): AccessToken?{
         val params = hashMapOf<String, String>()
         params["grant_type"] = "authorization_code"
-        params["client_id"] = Resources.getSystem().getString(R.string.client_id)
-        params["client_secret"] = Resources.getSystem().getString(R.string.client_secret)
+        params["client_id"] = OauthCredentials.clientId
+        params["client_secret"] = OauthCredentials.clientSecret
         params["code"] = authorizationCode
-        params["redirect_uri"] = Resources.getSystem().getString(R.string.redirect_uri)
-        return authApi.getAccessToken(params).execute().body()
+        params["redirect_uri"] = "app://com.meowingtons.shikimoriviewer/oauth"
+        val res = authApi.getAccessToken(params).execute()
+
+        return res.body()
     }
-    fun getRefreshToken(refreshToken: String): AccessToken?{
+    suspend fun getRefreshToken(refreshToken: String): AccessToken?{
         val params = hashMapOf<String, String>()
         params["grant_type"] = "refresh_token"
-        params["client_id"] = Resources.getSystem().getString(R.string.client_id)
-        params["client_secret"] = Resources.getSystem().getString(R.string.client_secret)
+        params["client_id"] = OauthCredentials.clientId
+        params["client_secret"] = OauthCredentials.clientSecret
         params["refresh_token"] = refreshToken
         return authApi.refreshAccessToken(params).execute().body()
     }
