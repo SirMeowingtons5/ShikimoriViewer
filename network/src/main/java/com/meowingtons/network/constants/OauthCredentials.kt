@@ -1,4 +1,7 @@
 package com.meowingtons.network.constants
-
-private val clientId = "YOUR CLIENT ID"
-private val clientSecret = "YOUR CLIENT SECRET"
+class OauthCredentials {
+    companion object {
+        const val clientId = "YOUR CLIENT ID"
+        const val clientSecret = "YOUR CLIENT SECRET"
+    }
+}
